@@ -1,4 +1,4 @@
-# 🧪 OrangeHRM Automated QA Suite – Playwright (Python)
+# 🧪 OrangeHRM Automated QA Suite – Playwright (Typescript)
 
 Projet de tests automatisés end-to-end pour le site OrangeHRM, basé sur la stratégie de test experte décrite dans le document de référence.
 
@@ -24,28 +24,29 @@ Projet de tests automatisés end-to-end pour le site OrangeHRM, basé sur la str
 
 ---
 
-## 📁 Structure du projet
+🗂️ Structure du projet
 
-```bash
+```
 orangehrm-tests/
 │
-├── tests/                  # Cas de test (pytest)
-│   ├── test_login.py
-│   ├── test_leave.py
-│   └── test_pim.py
+├── tests/                # Scénarios E2E (Playwright Test)
+│   ├── login.spec.ts
+│   ├── leave.spec.ts
+│   └── pim.spec.ts
 │
-├── pages/                 # Page Object Model
-│   ├── login_page.py
-│   ├── dashboard_page.py
-│   └── leave_page.py
+├── pages/                # Page Object Model (POM)
+│   ├── LoginPage.ts
+│   ├── DashboardPage.ts
+│   └── LeavePage.ts
 │
-├── utils/                 # Fonctions utilitaires (config, waits…)
-│   └── helpers.py
+├── utils/                # Helpers réutilisables
+│   ├── testData.ts
+│   └── wait.ts
 │
-├── data/                  # Jeux de données de test
+├── data/                 # Fixtures JSON / CSV
 │   └── users.json
 │
-├── conftest.py            # Hooks pytest (browser, base_url…)
-├── pytest.ini             # Configuration générale
-└── README.md              # Ce fichier
+├── playwright.config.ts  # Config globale (baseURL, devices…)
+├── package.json          # Scripts NPM
+└── README.md             # Ce fichier 🤓
 ```

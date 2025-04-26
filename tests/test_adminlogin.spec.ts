@@ -13,11 +13,54 @@ test.describe("Admin management", () => {
     await expect(page).toHaveURL(
       "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index"
     );
-    await page.locator(".oxd-userdropdown-name").waitFor({ state: "visible" });
-    await page.locator(".oxd-userdropdown-name").click();
-    await page.getByRole("menuitem", { name: "Logout" }).click();
-    await expect(page).toHaveURL(
-      "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
-    );
+  });
+  test("Admin Add User", async ({ page }) => {
+    await page.getByRole("link", { name: "Admin" }).click();
+    await page.getByRole("button", { name: "Add" }).click();
+    await page.getByText("-- Select --").first().click();
+    await page.getByRole("option", { name: "ESS" }).click();
+    await page.getByRole("textbox", { name: "Type for hints..." }).fill("e");
+    await page.getByRole("option", { name: "Emily Atkinson" }).click();
+    await page.getByRole("textbox").nth(2).fill("daura");
+    await page.locator("form i").nth(1).click();
+    await page.getByRole("option", { name: "Enabled" }).click();
+    await page.getByRole("textbox").nth(3).fill("admin123");
+    await page.getByRole("textbox").nth(4).fill("admin123");
+    await page.getByRole("button", { name: "Save" }).click();
+  });
+
+  test("Admin Search User", async ({ page }) => {
+    await page.getByRole("link", { name: "Admin" }).click();
+    await page.locator(".oxd-select-text").first().click();
+    await page.getByRole("option", { name: "ESS" }).click();
+    await page.getByRole("textbox", { name: "Type for hints..." }).fill("e");
+    await page
+      .getByRole("option", { name: "Emily Atkinson" })
+      .locator("span")
+      .click();
+    await page.locator("form i").nth(1).click();
+    await page.getByRole("option", { name: "Enabled" }).click();
+    await page.getByRole("button", { name: "Search" }).click();
+  });
+  test("Admin Delete User", async ({ page }) => {
+    await page.getByRole("link", { name: "Admin" }).click();
+    await page.getByRole("textbox", { name: "Type for hints..." }).fill("e");
+    await page.getByRole("option", { name: "Emily Atkinson" }).click();
+    await page.locator("form i").first().click();
+    await page.getByRole("option", { name: "ESS" }).click();
+    await page.locator("form i").nth(1).click();
+    await page.getByRole("option", { name: "Enabled" }).click();
+    await page.getByRole("button", { name: "Search" }).click();
+    await page
+      .getByRole("row", { name: " daura ESS Emily Atkinson" })
+      .locator("span i")
+      .click();
+    await page
+      .getByRole("row", { name: " daura ESS Emily Atkinson" })
+      .getByRole("button")
+      .first()
+      .click();
+    await page.getByRole("button", { name: "Yes, Delete" }).click();
+    await expect(page.getByText("Successfully Deleted")).toBeVisible();
   });
 });
