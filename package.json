@@ -1,0 +1,23 @@
+{
+  "name": "orange_hrm_playwright_ts",
+  "version": "1.0.0",
+  "description": "Projet de tests automatisés end-to-end pour le site OrangeHRM, basé sur la stratégie de test experte décrite dans le document de référence.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DauraRady/OrangeHRM-rbt-playwright.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/DauraRady/OrangeHRM-rbt-playwright/issues"
+  },
+  "homepage": "https://github.com/DauraRady/OrangeHRM-rbt-playwright#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.2"
+  }
+}
